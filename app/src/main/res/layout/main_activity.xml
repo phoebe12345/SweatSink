@@ -23,7 +23,7 @@
         android:text="@string/title_activity_map"/>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/button_main_schedule"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/title_activity_calender" />
