@@ -30,12 +30,16 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyB7Ih1cbLLNafOa9CddZ9_uc90zbhtzDwI"/>
+            android:value="AIzaSyB7Ih1cbLLNafOa9CddZ9_uc90zbhtzDwI" />
 
         <activity
             android:name=".MapActivity"
             android:exported="false"
             android:label="@string/title_activity_map"
+            android:theme="@style/Theme.SweatSink" />
+
+        <activity android:name=".CalendarActivity"
+            android:exported="false"
             android:theme="@style/Theme.SweatSink" />
 
         <meta-data
