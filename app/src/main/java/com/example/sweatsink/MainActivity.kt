@@ -14,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.sweatsink.ui.theme.SweatSinkTheme
 
-
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -24,7 +23,7 @@ class MainActivity : ComponentActivity() {
 
             val buttonClick = findViewById<Button>(R.id.map)
             buttonClick.setOnClickListener{
-                val intent = Intent(this, MapActivity::class.java)
+                val intent = Intent(this, MapsActivity::class.java)
                 startActivity(intent)
             }
 
