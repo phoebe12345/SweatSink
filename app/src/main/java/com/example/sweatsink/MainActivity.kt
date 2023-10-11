@@ -32,6 +32,13 @@ class MainActivity : ComponentActivity() {
                 val intent = Intent(this, CalendarActivity::class.java)
                 startActivity(intent)
             }
+
+            val databaseButtonClick = findViewById<Button>(R.id.database)
+            databaseButtonClick.setOnClickListener{
+                val intent = Intent(this, DatabaseActivity::class.java)
+                startActivity(intent)
+            }
+
 //            SweatSinkTheme {
 //                // A surface container using the 'background' color from the theme
 //                Surface(
