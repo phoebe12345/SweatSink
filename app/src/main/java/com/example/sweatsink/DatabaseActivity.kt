@@ -1,6 +1,5 @@
 package com.example.sweatsink
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -16,13 +15,5 @@ class DatabaseActivity : ComponentActivity() {
             val intent = Intent(this, DatabaseExercisesActivity::class.java)
             startActivity(intent)
         }
-
-        //val sharedPreference =  getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
-        /*var editor = sharedPreference.edit()
-        editor.putString("username","Anupam")
-        editor.putLong("l",100L)
-        editor.commit()*/
-        //sharedPreference.getLong("l",1L)
-        //println(sharedPreference.getString("username","defaultName"))
     }
 }

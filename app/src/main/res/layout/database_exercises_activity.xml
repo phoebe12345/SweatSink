@@ -5,12 +5,18 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textViewDatabaseExercisesTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Saved Exercises"
         android:textAlignment="center"
         android:textSize="34sp"
         android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textViewDatabaseExercisesContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="database exercises content goes here" />
 
 </LinearLayout>
