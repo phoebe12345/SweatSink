@@ -52,6 +52,11 @@
             android:theme="@style/Theme.SweatSink" />
 
         <activity
+            android:name=".DatabaseExercisesActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SweatSink" />
+
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"

@@ -5,17 +5,12 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Saved Data"
+        android:text="Saved Exercises"
         android:textAlignment="center"
         android:textSize="34sp"
         android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/database_exercises"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Exercises" />
 </LinearLayout>
