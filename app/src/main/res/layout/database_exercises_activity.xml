@@ -19,4 +19,15 @@
         android:layout_height="wrap_content"
         android:text="database exercises content goes here" />
 
+    <EditText
+        android:id="@+id/editTextDatabaseExercisesInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/database_exercises_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit" />
+
 </LinearLayout>
