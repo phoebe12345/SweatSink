@@ -52,46 +52,8 @@ class MainActivity : ComponentActivity() {
 
             val assistantButtonClick = findViewById<Button>(R.id.chat_gpt)
             assistantButtonClick.setOnClickListener {
-                val client=OkHttpClient()
-
-                val question = "what's your name?"
-                Log.v("data",question)
-
-                val apiKey="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"
-                val url="https://api.openai.com/v1/completions"
-                val requestBody="""
-                    {
-                    "model": "gpt-3.5-turbo-instruct",
-                    "prompt": "$question",
-                    "max_tokens": 7,
-                    "temperature": 0
-                    }
-                """.trimIndent()
-                val request = Request.Builder()
-                    .url(url)
-                    .addHeader("Content-Type", "application/json")
-                    .addHeader("Authorization", "Bearer $apiKey")
-                    .post(requestBody.toRequestBody("application/json".toMediaTypeOrNull()))
-                    .build()
-                client.newCall(request).enqueue(object : Callback {
-                    override fun onFailure(call: Call, e: IOException) {
-                        Log.e("error", "API failed", e)
-                    }
-                    override fun onResponse(call: Call, response: Response) {
-                        val body=response.body?.string()
-                        if (body != null) {
-                            Log.v("data",body)
-                        }
-                        else{
-                            Log.v("data","empty")
-                        }
-                        /*var jsonObject= JSONObject(body)
-                        val jsonArray: JSONArray =jsonObject.getJSONArray("choices")
-                        val textResult=jsonArray.getJSONObject(0).getString("text")
-                        callback(textResult)*/
-                    }
-                })
-
+                val intent = Intent(this, AssistantActivity::class.java)
+                startActivity(intent)
             }
 
 //            SweatSinkTheme {

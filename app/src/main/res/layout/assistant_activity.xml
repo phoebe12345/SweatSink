@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textViewAssistantTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Your Assistant"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/editTextAssistantInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="type your message here..." />
+
+    <Button
+        android:id="@+id/buttonSend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="send" />
+
+    <TextView
+        android:id="@+id/textViewAssistantOutput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Response will appear here..." />
+</LinearLayout>
