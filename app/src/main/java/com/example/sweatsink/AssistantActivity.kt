@@ -40,12 +40,11 @@ class AssistantActivity : ComponentActivity() {
     fun getReply(message:String, callback:(String) -> Unit){
         val client = OkHttpClient()
 
-        Log.v("data",message)
+        println(message)
 
         val url="https://api.openai.com/v1/completions"
         val key=""
-        //val key=getKey()
-        Log.v("data","KEY: $key")
+        //println("KEY: $key")
         val requestText="""
                     {
                     "model": "gpt-3.5-turbo-instruct",
@@ -67,19 +66,19 @@ class AssistantActivity : ComponentActivity() {
             override fun onResponse(call: Call, response: Response) {
                 val body=response.body?.string()
                 if (body != null) {
-                    Log.v("data",body)
+                    println(body)
                 }
                 else{
-                    Log.v("data","no reply")
+                    println("no reply")
                 }
-                var jsonObject= JSONObject(body)
                 try {
+                    var jsonObject= JSONObject(body)
                     val jsonArray: JSONArray = jsonObject.getJSONArray("choices")
                     val textResult=jsonArray.getJSONObject(0).getString("text")
                     callback(textResult)
                 }
                 catch(e: JSONException){
-                    val message="OpenAI API error"
+                    val message="OpenAI API error!"
                     println(message)
                     callback(message)
                 }
