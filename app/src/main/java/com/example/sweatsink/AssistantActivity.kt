@@ -14,6 +14,7 @@ import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
 import org.json.JSONArray
+import org.json.JSONException
 import org.json.JSONObject
 import java.io.File
 import java.io.IOException
@@ -36,26 +37,13 @@ class AssistantActivity : ComponentActivity() {
         }
     }
 
-    /*fun getKey(): Any {
-        val properties=java.util.Properties()
-        val localProperties= File("local.properties")
-        val currentPath=System.getProperty("user.dir")
-        println(currentPath)
-        if (localProperties.isFile) {
-            java.io.InputStreamReader(java.io.FileInputStream(localProperties), Charsets.UTF_8)
-                .use { reader ->
-                    properties.load(reader)
-                }
-        }else error("file doesn't exist")
-        return properties.getProperty("OPENAI_API_KEY")
-    }*/
     fun getReply(message:String, callback:(String) -> Unit){
         val client = OkHttpClient()
 
         Log.v("data",message)
 
         val url="https://api.openai.com/v1/completions"
-        val key="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"//System.getProperty("OPENAI_API_KEY")
+        val key=""
         //val key=getKey()
         Log.v("data","KEY: $key")
         val requestText="""
@@ -85,9 +73,16 @@ class AssistantActivity : ComponentActivity() {
                     Log.v("data","no reply")
                 }
                 var jsonObject= JSONObject(body)
-                val jsonArray: JSONArray =jsonObject.getJSONArray("choices")
-                val textResult=jsonArray.getJSONObject(0).getString("text")
-                callback(textResult)
+                try {
+                    val jsonArray: JSONArray = jsonObject.getJSONArray("choices")
+                    val textResult=jsonArray.getJSONObject(0).getString("text")
+                    callback(textResult)
+                }
+                catch(e: JSONException){
+                    val message="OpenAI API error"
+                    println(message)
+                    callback(message)
+                }
             }
         })
     }
