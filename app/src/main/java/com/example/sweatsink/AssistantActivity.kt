@@ -16,6 +16,7 @@ import okhttp3.Response
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
+import java.io.File
 import java.io.IOException
 
 class AssistantActivity : ComponentActivity() {
@@ -23,15 +24,28 @@ class AssistantActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.assistant_activity)
 
-        val sendButtonClick = findViewById<Button>(R.id.buttonSend)
-        sendButtonClick.setOnClickListener{
-            val textOutput=findViewById<TextView>(R.id.textViewAssistantOutput)
+        val textOutput=findViewById<TextView>(R.id.textViewAssistantOutput)
+
+        val sendButton = findViewById<Button>(R.id.buttonSend)
+        sendButton.setOnClickListener{
             val textInput=findViewById<EditText>(R.id.editTextAssistantInput)
             val question=textInput.text.toString()
             getReply(question){ response ->
                 runOnUiThread{
                     textOutput.text=response
                 }
+            }
+        }
+
+        val saveButton=findViewById<Button>(R.id.buttonSave)
+        saveButton.setOnClickListener {
+            val numExercisesFile=File(this.filesDir,"num_exercises.txt")
+            var numExercises=numExercisesFile.readText().toInt()
+            if(numExercises<14){
+                numExercises++
+                numExercisesFile.writeText((numExercises).toString())
+                val exerciseFile=File(this.filesDir,"saved_exercise_$numExercises.txt")
+                exerciseFile.writeText(textOutput.text.toString())
             }
         }
     }
