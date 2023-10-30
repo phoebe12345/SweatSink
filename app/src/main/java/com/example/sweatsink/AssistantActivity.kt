@@ -16,7 +16,6 @@ import okhttp3.Response
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
-import java.io.File
 import java.io.IOException
 
 class AssistantActivity : ComponentActivity() {
@@ -43,13 +42,12 @@ class AssistantActivity : ComponentActivity() {
         println(message)
 
         val url="https://api.openai.com/v1/completions"
-        val key=""
-        //println("KEY: $key")
+        val key = BuildConfig.AI_API_KEY
         val requestText="""
                     {
                     "model": "gpt-3.5-turbo-instruct",
                     "prompt": "$message",
-                    "max_tokens": 7,
+                    "max_tokens": 3000,
                     "temperature": 0
                     }
                 """.trimIndent()

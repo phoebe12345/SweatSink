@@ -1,3 +1,6 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+val key: String = gradleLocalProperties(rootDir).getProperty("AI_API_KEY")
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -29,6 +32,10 @@ android {
                 "proguard-rules.pro"
             )
         }
+
+        debug {
+            // add things to BuildConfig:  buildConfigField("String", "AIkey", key)
+        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -40,6 +47,7 @@ android {
     buildFeatures {
         compose = true
         viewBinding = true
+        android.buildFeatures.buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.3"
