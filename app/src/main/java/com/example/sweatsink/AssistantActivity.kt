@@ -20,10 +20,13 @@ import org.json.JSONObject
 import java.io.File
 import java.io.IOException
 
+
+
 class AssistantActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.assistant_activity)
+
 
         val textOutput=findViewById<TextView>(R.id.textViewAssistantOutput)
 
