@@ -89,4 +89,5 @@ dependencies {
     //for openai:
     implementation("com.squareup.okhttp3:okhttp:4.11.0")
 
+    implementation("com.google.android.libraries.places:places:3.2.0")
 }
