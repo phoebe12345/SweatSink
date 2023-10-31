@@ -39,27 +39,32 @@
         <activity
             android:name=".MapsActivity"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat" /> />
+            android:theme="@style/Theme.AppCompat"
+            android:parentActivityName=".MainActivity"/> />
 
         <activity
             android:name=".CalendarActivity"
             android:exported="false"
-            android:theme="@style/Theme.SweatSink" />
+            android:theme="@style/Theme.SweatSink"
+            android:parentActivityName=".MainActivity"/>
 
         <activity
             android:name=".DatabaseActivity"
             android:exported="false"
-            android:theme="@style/Theme.SweatSink" />
+            android:theme="@style/Theme.SweatSink"
+            android:parentActivityName=".MainActivity"/>
 
         <activity
             android:name=".DatabaseExercisesActivity"
             android:exported="false"
-            android:theme="@style/Theme.SweatSink" />
+            android:theme="@style/Theme.SweatSink"
+            android:parentActivityName=".MainActivity"/>
 
         <activity
             android:name=".AssistantActivity"
-            android:exported="false"
-            android:theme="@style/Theme.SweatSink" />
+            android:exported="true"
+            android:theme="@style/Theme.SweatSink"
+            android:parentActivityName=".MainActivity"/>
 
         <activity
             android:name=".MainActivity"
