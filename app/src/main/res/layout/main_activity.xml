@@ -6,16 +6,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="58dp"
-        android:text="@string/app_name"
-        android:textColor="#ffffff"
-        android:textSize="40sp"
         android:background="#269"
+        android:text="@string/app_name"
         android:textAlignment="center"
-        android:layout_centerHorizontal="true"/>
+        android:textColor="#ffffff"
+        android:textSize="40sp" />
 
     <Button
         android:id="@+id/map"
