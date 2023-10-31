@@ -5,6 +5,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import okhttp3.Call
 import okhttp3.Callback
@@ -46,6 +47,8 @@ class AssistantActivity : ComponentActivity() {
                 numExercisesFile.writeText((numExercises).toString())
                 val exerciseFile=File(this.filesDir,"saved_exercise_$numExercises.txt")
                 exerciseFile.writeText(textOutput.text.toString())
+            }else{
+                Toast.makeText(this,"Can't save exercise, you're at your maximum amount!",Toast.LENGTH_SHORT).show()
             }
         }
     }

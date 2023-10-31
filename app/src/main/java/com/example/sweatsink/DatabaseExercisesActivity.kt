@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
@@ -74,6 +75,9 @@ class DatabaseExercisesActivity : ComponentActivity() {
                         val numExercises=getNumExercises()
                         if(numExercises>0){
                             numExercisesFile.writeText((numExercises - 1).toString())
+                        }else{
+                            Toast.makeText(context,"Can't remove exercise, there's nothing to remove!",
+                                Toast.LENGTH_SHORT).show()
                         }
                         setTheContent()
                     }) {
@@ -83,6 +87,8 @@ class DatabaseExercisesActivity : ComponentActivity() {
                         val numExercises = getNumExercises()
                         if (numExercises < 14) {//max 14 exercises
                             numExercisesFile.writeText((numExercises + 1).toString())
+                        }else{
+                            Toast.makeText(context,"Can't add exercise, you're at your maximum amount!",Toast.LENGTH_SHORT).show()
                         }
                         setTheContent()
                     }) {
