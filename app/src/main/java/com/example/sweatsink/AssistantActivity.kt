@@ -38,6 +38,11 @@ class AssistantActivity : ComponentActivity() {
             }
         }
 
+        val clearButton = findViewById<Button>(R.id.buttonClear)
+        clearButton.setOnClickListener{
+            textOutput.text = "Response will appear here..."
+        }
+
         val saveButton=findViewById<Button>(R.id.buttonSave)
         saveButton.setOnClickListener {
             val numExercisesFile=File(this.filesDir,"num_exercises.txt")
