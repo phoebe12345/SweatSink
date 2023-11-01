@@ -33,5 +33,12 @@ class CalendarActivity : ComponentActivity() {
             val message = "Scheduled run for $year-$month-$day"
             Toast.makeText(this, message, Toast.LENGTH_LONG).show()
         }
+
+        val clearScheduleButton = findViewById<Button>(R.id.ClearScheduleButton)
+        clearScheduleButton.setOnClickListener {
+            // Remove Dates from local DB
+            val message = "Schedule Cleared!"
+            Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+        }
     }
 }
