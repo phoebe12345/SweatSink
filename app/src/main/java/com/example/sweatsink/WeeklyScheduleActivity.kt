@@ -5,15 +5,15 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.activity.ComponentActivity
 
-class DatabaseActivity : ComponentActivity() {
+class WeeklyScheduleActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.database_activity)
+        setContentView(R.layout.weekly_schedule_activity)
 
-        val databaseExercisesButton = findViewById<Button>(R.id.database_exercises)
-        databaseExercisesButton.setOnClickListener{
+        /*val databaseExercisesButtonClick = findViewById<Button>(R.id.database_exercises)
+        databaseExercisesButtonClick.setOnClickListener{
             val intent = Intent(this, DatabaseExercisesActivity::class.java)
             startActivity(intent)
-        }
+        }*/
     }
 }
