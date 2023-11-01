@@ -25,6 +25,12 @@
         android:layout_height="wrap_content"
         android:text="send" />
 
+    <Button
+        android:id="@+id/buttonClear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Clear" />
+
     <TextView
         android:id="@+id/textViewAssistantOutput"
         android:layout_width="match_parent"
