@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -20,6 +21,17 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.model.PolylineOptions
 import com.google.android.gms.maps.model.Polyline
+import okhttp3.Call
+import okhttp3.Callback
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
+import okhttp3.Response
+import org.json.JSONArray
+import org.json.JSONException
+import org.json.JSONObject
+import java.io.IOException
 
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
@@ -127,9 +139,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         // Clear previous polylines
         clearPolylines()
 
-        //use ok http to fetch a response from google
+        //call okHTTPGetRequest(directionsUrl)
     }
 
+    private fun clearPolylines() {
+        for (polyline in polylines) {
+            polyline.remove()
+        }
+        polylines.clear()
+    }
     private fun getDirectionsUrl(waypoints: List<LatLng>, mode: String, apiKey: String): String {
         val origin = waypoints.first()
         val destination = waypoints.last()
@@ -146,13 +164,40 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
                 "&key=$apiKey"
     }
 
-    private fun clearPolylines() {
-        for (polyline in polylines) {
-            polyline.remove()
-        }
-        polylines.clear()
-    }
+    private fun okHTTPGetRequest(url: String, callback:(String) -> Unit){
+        val client = OkHttpClient()
 
+        val request = Request.Builder()
+            .url(url)
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                Log.e("error", "API failure", e)
+            }
+            override fun onResponse(call: Call, response: Response) {
+                /*
+                val body=response.body?.string()
+                if (body != null) {
+                    println(body)
+                }
+                else{
+                    println("no reply")
+                }
+                try {
+                    var jsonObject= JSONObject(body)
+                    val jsonArray: JSONArray = jsonObject.getJSONArray("choices")
+                    val textResult=jsonArray.getJSONObject(0).getString("text")
+                    callback(textResult)
+                }
+                catch(e: JSONException){
+                    val message="OpenAI API error!"
+                    println(message)
+                    callback(message)
+                } */
+            }
+        })
+    }
 
     /**
      * Manipulates the map once available.
