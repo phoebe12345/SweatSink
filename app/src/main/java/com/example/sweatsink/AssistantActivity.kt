@@ -69,7 +69,7 @@ class AssistantActivity : ComponentActivity() {
                     {
                     "model": "gpt-3.5-turbo-instruct",
                     "prompt": "$message",
-                    "max_tokens": 3000,
+                    "max_tokens": 1000,
                     "temperature": 0
                     }
                 """.trimIndent()
