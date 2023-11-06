@@ -10,10 +10,10 @@ class WeeklyScheduleActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.weekly_schedule_activity)
 
-        /*val databaseExercisesButtonClick = findViewById<Button>(R.id.database_exercises)
-        databaseExercisesButtonClick.setOnClickListener{
-            val intent = Intent(this, DatabaseExercisesActivity::class.java)
+        val newWeeklyScheduleButton = findViewById<Button>(R.id.buttonNewWeeklySchedule)
+        newWeeklyScheduleButton.setOnClickListener{
+            val intent = Intent(this, NewWeeklyScheduleActivity::class.java)
             startActivity(intent)
-        }*/
+        }
     }
 }
