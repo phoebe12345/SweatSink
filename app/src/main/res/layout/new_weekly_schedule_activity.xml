@@ -13,4 +13,32 @@
         android:textSize="34sp"
         android:textStyle="bold" />
 
+    <TextView
+        android:id="@+id/textViewNewWeeklyScheduleGoal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="What is your fitness goal?" />
+
+    <EditText
+        android:id="@+id/editTextNewWeeklyScheduleGoal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/textViewNewWeeklyScheduleEquipment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="What equipment is available to you?" />
+
+    <EditText
+        android:id="@+id/editTextNewWeeklyScheduleEquipment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/buttonNewWeeklyScheduleCreate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Create"/>
+
 </LinearLayout>
