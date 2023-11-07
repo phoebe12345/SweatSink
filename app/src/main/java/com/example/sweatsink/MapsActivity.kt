@@ -67,7 +67,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
                 Toast.makeText(this, "Add at least two markers to create a route.", Toast.LENGTH_SHORT).show()
             }
         }
+
+//        val nearbylocation = findViewById<Button>(R.id.buttonCreateNearby)
+//        nearbylocation.setOnClickListener {
+//                nearByPlace("Park")
+//        }
     }
+
+//    private fun nearByPlace(typePlace: String){
+//
+//    }
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
