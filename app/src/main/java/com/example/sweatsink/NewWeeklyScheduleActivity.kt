@@ -19,14 +19,12 @@ class NewWeeklyScheduleActivity : ComponentActivity() {
             val equipmentTextEdit=findViewById<EditText>(R.id.editTextNewWeeklyScheduleEquipment)
             val equipment=equipmentTextEdit.text.toString()
             val prompt="create a weekly fitness program that follows the following format: list the days of the week beginning with monday in all capitals, followed by a new line, without any additional formatting. after each day write a list of individual workouts following this format: #. workout name - # of sets, # of reps, rest time between sets in minutes. replace workout name with the name of the exercise. all exercises must follow this format. the program should attempt to acheive the following: $goal. the program is allowed to utilize the following equipment: $equipment."
-
             val assistant=Assistant()
             assistant.getReply(prompt){ response ->
                 runOnUiThread{
                     val weekPlan=WeekPlan(response)
-                    //println(weekPlan.toString())
                     val file = File(this.filesDir,"weekly_schedule.txt")
-                    file.writeText(response)
+                    file.writeText(weekPlan.toString())
                 }
             }
         }
