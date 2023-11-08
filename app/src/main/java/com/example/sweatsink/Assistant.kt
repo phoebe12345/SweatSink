@@ -12,10 +12,14 @@ import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
+import java.util.concurrent.TimeUnit
 
 class Assistant {
     fun getReply(message:String, callback:(String) -> Unit){
-        val client = OkHttpClient()
+        val client = OkHttpClient.Builder().connectTimeout(30, TimeUnit.SECONDS)
+            .writeTimeout(30, TimeUnit.SECONDS)
+            .readTimeout(30, TimeUnit.SECONDS)
+            .build()
 
         println(message)
 

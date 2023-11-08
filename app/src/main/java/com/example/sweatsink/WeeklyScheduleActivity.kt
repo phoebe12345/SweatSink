@@ -11,11 +11,14 @@ import android.widget.TextView
 import androidx.activity.ComponentActivity
 import java.io.File
 
-
 class WeeklyScheduleActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.weekly_schedule_activity)
+
+        /*val calendar: Calendar = Calendar.getInstance()
+        val day: Int = calendar.get(Calendar.DAY_OF_WEEK)
+        println(day)*/
 
         val file = File(this.filesDir,"weekly_schedule.txt")
         val weekPlan=WeekPlan(file.readText())
