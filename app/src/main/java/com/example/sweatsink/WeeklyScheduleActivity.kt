@@ -1,6 +1,6 @@
 package com.example.sweatsink
 
-import android.R.id
+import WeekPlan
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -17,16 +17,35 @@ class WeeklyScheduleActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.weekly_schedule_activity)
 
-        val weeklyScheduleTextView=findViewById<TextView>(R.id.textViewNewWeeklyScheduleContent)
         val file = File(this.filesDir,"weekly_schedule.txt")
-        weeklyScheduleTextView.text=file.readText()
+        val weekPlan=WeekPlan(file.readText())
 
-        /*val parentLayout=findViewById<View>(R.id.weeklyScheduleContentLayout) as LinearLayout
+        /*val weeklyScheduleTextView=findViewById<TextView>(R.id.textViewNewWeeklyScheduleContent)
+        weeklyScheduleTextView.text=weekPlan.toString()*/
 
-        val checkBox = CheckBox(this)
-        checkBox.text = "text"
-
-        parentLayout.addView(checkBox)*/
+        val parentLayout=findViewById<View>(R.id.weeklyScheduleContentLayout) as LinearLayout
+        for(i in 0..6){
+            val dayPlan=weekPlan.days[i]
+            if (dayPlan != null) {
+                /*val dayCheckBox=CheckBox(this)
+                dayCheckBox.text=weekPlan.getDayAsString(i)
+                parentLayout.addView(dayCheckBox)*/
+                val dayText=TextView(this)
+                dayText.text=weekPlan.getDayAsString(i)
+                parentLayout.addView(dayText)
+                if(dayPlan.isRest){
+                    val restText=TextView(this)
+                    restText.text="rest day"
+                    parentLayout.addView(restText)
+                }else {
+                    for (j in 0 until dayPlan.workouts.size) {
+                        val checkBox = CheckBox(this)
+                        checkBox.text = dayPlan.workouts[j].toString()
+                        parentLayout.addView(checkBox)
+                    }
+                }
+            }
+        }
 
         val newWeeklyScheduleButton = findViewById<Button>(R.id.buttonNewWeeklySchedule)
         newWeeklyScheduleButton.setOnClickListener{

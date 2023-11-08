@@ -21,4 +21,8 @@ class WeekPlan {
         }
         return stringToReturn
     }
+
+    fun getDayAsString(dayIndex:Int):String{
+        return Day.values()[dayIndex].toString()
+    }
 }

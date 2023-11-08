@@ -7,8 +7,9 @@ class DayPlan{
         for(i in inputString.indices){
             if(inputString[i]=='\n') {
                 val w=Workout(currentString)
-                if(w.isValid)
+                if(w.isValid) {
                     workouts.add(Workout(currentString))
+                }
                 currentString=""
             }else{
                 currentString+=inputString[i]
@@ -16,8 +17,9 @@ class DayPlan{
         }
         if(currentString.isNotEmpty()) {
             val w=Workout(currentString)
-            if(w.isValid)
+            if(w.isValid) {
                 workouts.add(Workout(currentString))
+            }
         }
 
         if(workouts.isEmpty())
