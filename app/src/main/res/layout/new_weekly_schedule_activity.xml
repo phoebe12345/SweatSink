@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textViewNewWeeklyScheduleTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="New Weekly Schedule"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textViewNewWeeklyScheduleGoal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="What is your fitness goal?" />
+
+    <EditText
+        android:id="@+id/editTextNewWeeklyScheduleGoal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/textViewNewWeeklyScheduleEquipment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="What equipment is available to you?" />
+
+    <EditText
+        android:id="@+id/editTextNewWeeklyScheduleEquipment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/buttonNewWeeklyScheduleCreate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Create"/>
+
+</LinearLayout>
