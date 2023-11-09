@@ -36,7 +36,9 @@ class AssistantActivity : ComponentActivity() {
         val saveButton=findViewById<Button>(R.id.buttonSave)
         saveButton.setOnClickListener {
             val numExercisesFile=File(this.filesDir,"num_exercises.txt")
-            var numExercises=numExercisesFile.readText().toInt()
+            var numExercises=0
+            if(numExercisesFile.isFile)
+                numExercises=numExercisesFile.readText().toInt()
             if(numExercises<14){
                 numExercises++
                 numExercisesFile.writeText((numExercises).toString())
