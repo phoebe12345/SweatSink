@@ -1,6 +1,7 @@
 package com.example.sweatsink
 
 import WeekPlan
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -25,6 +26,9 @@ class NewWeeklyScheduleActivity : ComponentActivity() {
                     val weekPlan=WeekPlan(response)
                     val file = File(this.filesDir,"weekly_schedule.txt")
                     file.writeText(weekPlan.toString())
+
+                    val intent = Intent(this, WeeklyScheduleActivity::class.java)
+                    startActivity(intent)
                 }
             }
         }
