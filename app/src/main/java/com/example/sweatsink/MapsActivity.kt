@@ -3,6 +3,8 @@ package com.example.sweatsink
 import android.Manifest
 import android.content.ContentProviderClient
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,17 +12,24 @@ import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import com.example.sweatsink.Common.Common
+import com.example.sweatsink.Model.MyPlaces
+import com.example.sweatsink.Remote.IGoogleAPIServices
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptor
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.model.PolylineOptions
 import com.google.android.gms.maps.model.Polyline
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -44,9 +53,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
     private val polylines: MutableList<Polyline> = ArrayList()
     private var isCreatingRoute = true
 
+    private var latitude:Double=0.toDouble()
+    private var longitude:Double=0.toDouble()
+
     companion object{
         private const val LOCATION_REQUEST_CODE = 1
     }
+
+    lateinit var mService:IGoogleAPIServices
+
+    internal lateinit var currentPlaces: MyPlaces
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,6 +74,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
+        mService = Common.googleAPIServices
+
         // Initialize the "Create Route" button
         val createRouteButton = findViewById<Button>(R.id.buttonCreateRoute)
         createRouteButton.setOnClickListener {
@@ -68,15 +86,95 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
             }
         }
 
-//        val nearbylocation = findViewById<Button>(R.id.buttonCreateNearby)
-//        nearbylocation.setOnClickListener {
-//                nearByPlace("Park")
-//        }
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation_view)
+
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            when(item.itemId){
+                R.id.action_hospital -> nearByPlace("hospital")
+                R.id.action_market -> nearByPlace("market")
+                R.id.action_restaurant -> nearByPlace("restaurant")
+                R.id.action_school -> nearByPlace("school")
+
+            }
+            true
+        }
     }
 
-//    private fun nearByPlace(typePlace: String){
-//
-//    }
+   private fun bitmapDescriptorFromVector(context: retrofit2.Callback<MyPlaces>, vectorResId: Int): BitmapDescriptor? {
+        return ContextCompat.getDrawable(this, vectorResId)?.run {
+            setBounds(0, 0, intrinsicWidth, intrinsicHeight)
+            val bitmap = Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, Bitmap.Config.ARGB_8888)
+            draw(Canvas(bitmap))
+            BitmapDescriptorFactory.fromBitmap(bitmap)
+        }
+    }
+
+
+    private fun nearByPlace(typePlace: String){
+        //Clear all marker on map
+        mMap.clear()
+
+        val url = getUrl(latitude,longitude,typePlace)
+
+        mService.getNearbyPlaces(url)
+            .enqueue(object : retrofit2.Callback<MyPlaces>{
+                override fun onResponse(
+                    call: retrofit2.Call<MyPlaces>,
+                    response: retrofit2.Response<MyPlaces>
+                ) {
+                    currentPlaces = response!!.body()!!
+
+                    if(response!!.isSuccessful){
+                        for(i in 0 until response!!.body()!!.result!!.size){
+                            val markerOptions=MarkerOptions()
+                            val googlePlaces = response.body()!!.result!![i]
+                            val lat = googlePlaces.geometry!!.location!!.lat
+                            val lng = googlePlaces.geometry!!.location!!.lng
+                            val placeName  = googlePlaces.name
+                            val latLng = LatLng(lng,lat)
+
+                            markerOptions.position(latLng)
+                            markerOptions.title(placeName)
+                            if(typePlace.equals ("hospital"))
+                                markerOptions.icon(bitmapDescriptorFromVector(this,R.drawable.ic_hospital))
+                            else if(typePlace.equals("market"))
+                                markerOptions.icon(bitmapDescriptorFromVector(this,R.drawable.ic_market))
+                            else if(typePlace.equals("restaurant"))
+                                markerOptions.icon(bitmapDescriptorFromVector(this,R.drawable.ic_restaurant))
+                            else if(typePlace.equals("school"))
+                                markerOptions.icon(bitmapDescriptorFromVector(this,R.drawable.ic_school))
+                            else
+                                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
+
+                            markerOptions.snippet(i.toString()) //Assign index for market
+
+                            //add marker to map
+                            mMap!!.addMarker(markerOptions)
+                            //move camera
+                            mMap!!.moveCamera(CameraUpdateFactory.newLatLng(latLng))
+                            mMap!!.animateCamera(CameraUpdateFactory.zoomTo(17f))
+
+                        }
+                    }
+                }
+
+                override fun onFailure(call: retrofit2.Call<MyPlaces>, t: Throwable) {
+                    Toast.makeText(baseContext,"" + t!!.message,Toast.LENGTH_SHORT).show()
+                }
+
+            })
+    }
+
+    private fun getUrl(latitude: Any, longitude: Any, typePlace: String): String {
+        val googlePlaceUrl = StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json")
+        googlePlaceUrl.append("?location=$latitude,$longitude")
+        googlePlaceUrl.append("&radius=500")
+        googlePlaceUrl.append("&type=$typePlace")
+        googlePlaceUrl.append("&key=AIzaSyBnYzbe5se2fIVoIkBbm3XufH8FPiwhIy0")
+
+        Log.d("URL_DEBUG",googlePlaceUrl.toString())
+        return googlePlaceUrl.toString()
+    }
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap

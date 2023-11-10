@@ -75,7 +75,7 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("com.google.android.gms:play-services-location:21.0.1")
+    implementation("com.google.android.gms:play-services-location:18.2.0")
 
 
     testImplementation("junit:junit:4.13.2")
@@ -91,4 +91,10 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.11.0")
 
     implementation("com.google.android.libraries.places:places:3.2.0")
+
+    //noinspection GradleCompatible
+    implementation("com.android.support:appcompat-v7:28.0.0")
+    implementation("com.squareup.retrofit2:retrofit:2.3.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.3.0")
+    implementation("com.android.support:multidex:1.0.3")
 }
