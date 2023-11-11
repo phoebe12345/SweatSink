@@ -152,7 +152,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
                             else
                                 markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
 
-                            markerOptions.snippet(i.toString()) //Assign index for market
 
                             //add marker to map
                             mMap.addMarker(markerOptions)
