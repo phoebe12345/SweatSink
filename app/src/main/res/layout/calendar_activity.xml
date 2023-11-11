@@ -24,14 +24,31 @@
         android:layout_height="wrap_content"
         android:background="#03A9F4"
         android:padding="30dp"
-        android:text="Schedule Run" />
+        android:text="Schedule exercise" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="right"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingTop="120dp">
+        android:paddingTop="50dp">
+
+        <Button
+            android:id="@+id/ViewScheduleButton"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:background="#4CAF50"
+            android:text="View Schedule"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/clearScheduleButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:background="#4CAF50"
+            android:text="View Schedule"
+            android:visibility="invisible" />
 
         <Button
             android:id="@+id/ClearScheduleButton"
@@ -41,6 +58,13 @@
             android:background="#F82D2D"
             android:text="Clear Schedule"
             android:visibility="visible" />
+
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textViewSchedule"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal" />
 
 </LinearLayout>
