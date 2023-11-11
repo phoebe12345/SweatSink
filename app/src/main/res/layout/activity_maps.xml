@@ -24,6 +24,7 @@
         android:layout_marginBottom="56dp"
         app:itemIconTint="@drawable/nav_selector"
         app:itemTextColor="@drawable/nav_selector"
+        app:itemBackground="@color/quantum_orange900"
         app:menu="@menu/bottom_menu" />
 
     <Button

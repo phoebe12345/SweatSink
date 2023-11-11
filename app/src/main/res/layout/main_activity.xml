@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="58dp"
+        android:background="@color/quantum_orange900"
         android:text="@string/app_name"
+        android:textAlignment="center"
         android:textColor="#ffffff"
-        android:textSize="40sp"
-        android:background="#269"
-        android:textAlignment="center"/>
-
+        android:textSize="40sp" />
 
 
     <Button
         android:id="@+id/map"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/title_activity_maps"/>
+        android:text="@string/title_activity_maps" />
 
     <Button
         android:id="@+id/calendar"
@@ -39,4 +39,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Saved Data" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="293dp"
+        android:layout_height="218dp"
+        android:layout_gravity="right"
+        android:adjustViewBounds="false"
+        android:src="@drawable/kisspng_athlete_running_sport_track_and_field_athletics_running_transparent_png_5a743e735a7749_5462737515175676033706" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="306dp"
+        android:layout_height="283dp"
+        android:src="@drawable/kisspng_powerlifting_deadlift_weight_training_bench_press_powerlifting_png_images_free_download_5c0965525b6cb8_6409010615441196343745" />
 </LinearLayout>

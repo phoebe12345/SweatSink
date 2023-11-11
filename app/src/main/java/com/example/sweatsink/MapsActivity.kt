@@ -94,6 +94,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
                 R.id.action_market -> nearByPlace("market")
                 R.id.action_restaurant -> nearByPlace("restaurant")
                 R.id.action_park -> nearByPlace("park")
+                R.id.action_clear -> mMap.clear()
 
             }
             true
@@ -212,7 +213,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
                 lastLocation = location
                 val currentLatLong = LatLng(location.latitude, location.longitude)
                 placeMarkerOnMap(currentLatLong)
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLong, 15f))
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLong, 12f))
 
             }
         }
