@@ -10,10 +10,10 @@
         app:showAsAction="ifRoom"/>
 
     <item
-        android:id="@+id/action_school"
+        android:id="@+id/action_park"
         android:enabled="true"
-        android:title="School"
-        android:icon="@drawable/baseline_school_24"
+        android:title="Park"
+        android:icon="@drawable/baseline_park_24"
         app:showAsAction="ifRoom"/>
 
     <item

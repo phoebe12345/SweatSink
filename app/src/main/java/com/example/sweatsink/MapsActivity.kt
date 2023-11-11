@@ -93,7 +93,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
                 R.id.action_hospital -> nearByPlace("hospital")
                 R.id.action_market -> nearByPlace("market")
                 R.id.action_restaurant -> nearByPlace("restaurant")
-                R.id.action_school -> nearByPlace("school")
+                R.id.action_park -> nearByPlace("park")
 
             }
             true
@@ -137,8 +137,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
                             val lat = googlePlaces.geometry!!.location!!.lat
                             val lng = googlePlaces.geometry!!.location!!.lng
                             val placeName  = googlePlaces.name
-                            val latLng = LatLng(lng,lat)
-                            
+                            val latLng = LatLng(lat,lng)
+
                             markerOptions.position(latLng)
                             markerOptions.title(placeName)
                             if(typePlace.equals ("hospital"))
@@ -147,8 +147,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
                                 markerOptions.icon(bitmapDescriptorFromVector(this,R.drawable.ic_market))
                             else if(typePlace.equals("restaurant"))
                                 markerOptions.icon(bitmapDescriptorFromVector(this,R.drawable.ic_restaurant))
-                            else if(typePlace.equals("school"))
-                                markerOptions.icon(bitmapDescriptorFromVector(this,R.drawable.ic_school))
+                            else if(typePlace.equals("park"))
+                                markerOptions.icon(bitmapDescriptorFromVector(this,R.drawable.ic_park))
                             else
                                 markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
 
@@ -174,7 +174,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
     private fun getUrl(latitude: Any, longitude: Any, typePlace: String): String {
         val googlePlaceUrl = StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json")
         googlePlaceUrl.append("?location=$latitude,$longitude")
-        googlePlaceUrl.append("&radius=500")
+        googlePlaceUrl.append("&radius=1000")
         googlePlaceUrl.append("&type=$typePlace")
         googlePlaceUrl.append("&key=AIzaSyBnYzbe5se2fIVoIkBbm3XufH8FPiwhIy0")
 
@@ -213,7 +213,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
                 lastLocation = location
                 val currentLatLong = LatLng(location.latitude, location.longitude)
                 placeMarkerOnMap(currentLatLong)
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLong, 7f))
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLong, 15f))
 
             }
         }
