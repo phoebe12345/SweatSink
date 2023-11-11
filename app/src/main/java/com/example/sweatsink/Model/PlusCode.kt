@@ -1,6 +1,6 @@
 package com.example.sweatsink.Model
 
 class PlusCode {
-    val compoundCode: String?=null
-    val globalCode: String?=null
+    var compoundCode: String?=null
+    var globalCode: String?=null
 }

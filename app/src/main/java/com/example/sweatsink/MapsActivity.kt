@@ -53,8 +53,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
     private val polylines: MutableList<Polyline> = ArrayList()
     private var isCreatingRoute = true
 
-    private var latitude:Double=0.toDouble()
-    private var longitude:Double=0.toDouble()
+    private var latitude: Double=0.toDouble()
+    private var longitude: Double=0.toDouble()
 
     companion object{
         private const val LOCATION_REQUEST_CODE = 1
@@ -114,6 +114,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         //Clear all marker on map
         mMap.clear()
 
+        getCurrentLocationUser()
+        latitude = lastLocation.latitude
+        longitude = lastLocation.longitude
+
         val url = getUrl(latitude,longitude,typePlace)
 
         mService.getNearbyPlaces(url)
@@ -122,17 +126,19 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
                     call: retrofit2.Call<MyPlaces>,
                     response: retrofit2.Response<MyPlaces>
                 ) {
-                    currentPlaces = response!!.body()!!
+                    currentPlaces = response.body()!!
 
-                    if(response!!.isSuccessful){
-                        for(i in 0 until response!!.body()!!.result!!.size){
+
+                    if(response.isSuccessful){
+                        for(i in 0 until (response.body()!!.results!!.size))
+                        {
                             val markerOptions=MarkerOptions()
-                            val googlePlaces = response.body()!!.result!![i]
+                            val googlePlaces = response.body()!!.results!![i]
                             val lat = googlePlaces.geometry!!.location!!.lat
                             val lng = googlePlaces.geometry!!.location!!.lng
                             val placeName  = googlePlaces.name
                             val latLng = LatLng(lng,lat)
-
+                            
                             markerOptions.position(latLng)
                             markerOptions.title(placeName)
                             if(typePlace.equals ("hospital"))
@@ -149,10 +155,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
                             markerOptions.snippet(i.toString()) //Assign index for market
 
                             //add marker to map
-                            mMap!!.addMarker(markerOptions)
+                            mMap.addMarker(markerOptions)
                             //move camera
-                            mMap!!.moveCamera(CameraUpdateFactory.newLatLng(latLng))
-                            mMap!!.animateCamera(CameraUpdateFactory.zoomTo(17f))
+                            mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng))
+                            mMap.animateCamera(CameraUpdateFactory.zoomTo(15f))
 
                         }
                     }
@@ -182,12 +188,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         mMap.uiSettings.isZoomControlsEnabled = true
         mMap.setOnMarkerClickListener(this)
         getCurrentLocationUser()
-
-
-//        // Add a marker in Sydney and move the camera
-//        val sydney = LatLng(-34.0, 151.0)
-//        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
 
         mMap.setOnMapClickListener { latLng ->
             if (isCreatingRoute) {

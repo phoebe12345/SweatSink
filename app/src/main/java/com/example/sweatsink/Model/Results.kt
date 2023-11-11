@@ -1,21 +1,21 @@
 package com.example.sweatsink.Model
 
 class Results {
-    val businessStatus: String?=null
-    val geometry: Geometry?=null
-    val icon: String?=null
-    val iconBackgroundColor: String?=null
-    val iconMaskBaseUri: String?=null
-    val name: String?=null
-    val openingHours: OpeningHours?=null
-    val plusCode: PlusCode?=null
-    val rating: Double=0.0
-    val reference: String?=null
-    val scope: String?=null
-    val types: Array<String>?=null
-    val userRatingsTotal: Int=0
-    val vicinity: String?=null
-    val photos: Array<Photos>?=null
-    val placeId: String?=null
+    var name: String?=null
+    var businessStatus: String?=null
+    var geometry: Geometry?=null
+    var icon: String?=null
+    var iconBackgroundColor: String?=null
+    var iconMaskBaseUri: String?=null
+    var openingHours: OpeningHours?=null
+    var plusCode: PlusCode?=null
+    var rating: Double=0.0
+    var reference: String?=null
+    var scope: String?=null
+    var types: Array<String>?=null
+    var userRatingsTotal: Int=0
+    var vicinity: String?=null
+    var photos: Array<Photos>?=null
+    var placeId: String?=null
 
 }

@@ -1,6 +1,6 @@
 package com.example.sweatsink.Model
 
 class Geometry {
-    val location: Location?=null
-    val viewport: Viewport?=null
+    var location: Location?=null
+    var viewport: Viewport?=null
 }

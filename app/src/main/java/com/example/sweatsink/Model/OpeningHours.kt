@@ -1,5 +1,5 @@
 package com.example.sweatsink.Model
 
 class OpeningHours {
-    val openNow: Boolean=false
+    var openNow: Boolean=false
 }
