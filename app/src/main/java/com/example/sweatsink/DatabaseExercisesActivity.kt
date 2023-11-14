@@ -57,11 +57,11 @@ class DatabaseExercisesActivity : ComponentActivity() {
 
                 val context = LocalContext.current
 
-                val statFs = StatFs(Environment.getRootDirectory().absolutePath)
+                /*val statFs = StatFs(Environment.getRootDirectory().absolutePath)
                 val freeBytes = (statFs.blockSizeLong * statFs.availableBlocksLong)
                 if(freeBytes<3000){
                     Toast.makeText(context,"You're running low on storage space!",Toast.LENGTH_SHORT).show()
-                }
+                }*/
 
                 Column(
                     modifier = Modifier.fillMaxSize(),
@@ -90,7 +90,7 @@ class DatabaseExercisesActivity : ComponentActivity() {
                         }
                         setTheContent()
                     }) {
-                        Text("Remove Exercise")
+                        Text("Remove")
                     }
                     Button(onClick = {
                         val numExercises = getNumExercises()
@@ -101,13 +101,13 @@ class DatabaseExercisesActivity : ComponentActivity() {
                         }
                         setTheContent()
                     }) {
-                        Text("Add Exercise")
+                        Text("Add")
                     }
                     Button(onClick = {
                         val file = File(context.filesDir, "saved_exercise_$currentIndex.txt")
                         file.writeText(textContent)
                     }) {
-                        Text("Save Changes")
+                        Text("Save")
                     }
                 }
                 Column {

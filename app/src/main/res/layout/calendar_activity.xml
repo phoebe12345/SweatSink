@@ -38,6 +38,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:orientation="horizontal"
                 android:paddingTop="50dp">
 
@@ -49,15 +50,6 @@
                     android:background="#4CAF50"
                     android:text="View Schedule"
                     android:visibility="visible" />
-
-                <Button
-                    android:id="@+id/clearScheduleButton2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:background="#4CAF50"
-                    android:text="View Schedule"
-                    android:visibility="invisible" />
 
                 <Button
                     android:id="@+id/ClearScheduleButton"
