@@ -10,8 +10,8 @@ class DatabaseActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.database_activity)
 
-        val databaseExercisesButtonClick = findViewById<Button>(R.id.database_exercises)
-        databaseExercisesButtonClick.setOnClickListener{
+        val databaseExercisesButton = findViewById<Button>(R.id.database_exercises)
+        databaseExercisesButton.setOnClickListener{
             val intent = Intent(this, DatabaseExercisesActivity::class.java)
             startActivity(intent)
         }

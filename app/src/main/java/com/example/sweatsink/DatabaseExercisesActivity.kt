@@ -34,8 +34,6 @@ class DatabaseExercisesActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
-
         var currentIndex=0
 
         val numExercisesFile=File(this.filesDir,"num_exercises.txt")

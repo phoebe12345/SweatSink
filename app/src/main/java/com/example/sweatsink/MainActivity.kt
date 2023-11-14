@@ -5,25 +5,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import android.widget.Button
 import android.content.Intent
-import android.util.Log
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.sweatsink.ui.theme.SweatSinkTheme
-import okhttp3.Call
-import okhttp3.Callback
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.RequestBody.Companion.toRequestBody
-import okhttp3.Response
-import org.json.JSONArray
-import org.json.JSONObject
-import java.io.IOException
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,9 +19,9 @@ class MainActivity : ComponentActivity() {
                 startActivity(intent)
             }
 
-            val calendarButton = findViewById<Button>(R.id.calendar)
-            calendarButton.setOnClickListener{
-                val intent = Intent(this, CalendarActivity::class.java)
+            val scheduleButton = findViewById<Button>(R.id.calendar)
+            scheduleButton.setOnClickListener{
+                val intent = Intent(this, ScheduleActivity::class.java)
                 startActivity(intent)
             }
 
