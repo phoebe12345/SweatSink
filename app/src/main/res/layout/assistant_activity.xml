@@ -47,6 +47,6 @@
         android:layout_height="wrap_content"
         android:text="Save as exercise" />
 
-
+    </LinearLayout>
 
 </ScrollView>
