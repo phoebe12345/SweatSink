@@ -18,6 +18,7 @@ class AssistantActivity : ComponentActivity() {
 
         val sendButton = findViewById<Button>(R.id.buttonSend)
         sendButton.setOnClickListener{
+            textOutput.text = "Loading Response, Please Wait"
             val textInput=findViewById<EditText>(R.id.editTextAssistantInput)
             val question=textInput.text.toString()
             val assistant=Assistant()
