@@ -90,7 +90,7 @@ class DatabaseExercisesActivity : ComponentActivity() {
                         }
                         setTheContent()
                     }) {
-                        Text("Remove Exercise")
+                        Text("Remove")
                     }
                     Button(onClick = {
                         val numExercises = getNumExercises()
@@ -101,13 +101,13 @@ class DatabaseExercisesActivity : ComponentActivity() {
                         }
                         setTheContent()
                     }) {
-                        Text("Add Exercise")
+                        Text("Add")
                     }
                     Button(onClick = {
                         val file = File(context.filesDir, "saved_exercise_$currentIndex.txt")
                         file.writeText(textContent)
                     }) {
-                        Text("Save Changes")
+                        Text("Save")
                     }
                 }
                 Column {
