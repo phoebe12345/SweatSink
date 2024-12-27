@@ -9,12 +9,6 @@ Sweatsink is an Android app that uses artificial intelligence to generate person
 - **Run Planner**: Plan your running routes, including tracking distance, time, and key locations along the way.
 - **Route Information**: The app displays useful information about places along your running route, such as hospitals and other landmarks.
 
-## Installation
-
-1. Download and install the Sweatsink app from the Google Play Store.
-2. Sign in and let the AI generate a personalized workout plan for you.
-3. Connect your Google Calendar to schedule and track workouts.
-
 ## Technology Stack
 
 - **Platform**: Android
@@ -29,7 +23,4 @@ Sweatsink is an Android app that uses artificial intelligence to generate person
 3. Commit your changes.
 4. Push to your fork and create a pull request.
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
